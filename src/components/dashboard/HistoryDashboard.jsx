@@ -1,4 +1,5 @@
-import "../dashboard.css";
+import "./dashboard.css";
+import TransactionCard from "../general/TransactionCard";
 
 function HistoryDashboard() {
   return (

@@ -1,0 +1,40 @@
+.box-container {
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.box-container {
+    p {
+        margin: 0;
+    }
+}
+
+.dashboard-items-container {
+    border:0.5px solid rgb(206, 206, 206);
+    border-radius: 15px;
+    box-shadow: 0.1rem 0.1rem 0.8rem rgb(209, 208, 208);
+}
+
+.transaction-card {
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 10px;
+    border: 0.5px solid rgb(252, 231, 231);
+    box-shadow: 0.1rem 0.1rem 0.5rem rgb(187, 197, 226);
+    max-width: 700px;
+    min-width:400px;
+}
+
+.transaction-btn {
+    border: 2px solid rgb(187, 197, 226);
+    height:2.2rem;
+    border-radius: 6px;
+    max-width: 250px;
+}
+
+input {
+    height:2rem;
+    border-radius: 6px;
+    border: 1.5px solid rgb(187, 197, 226);
+    max-width: 250px;
+}

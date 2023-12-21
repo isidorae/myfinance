@@ -1,4 +1,4 @@
-import "../dashboard.css"
+import "./dashboard.css"
 
 function Card({icon: IconComponent, title, value }) {
 

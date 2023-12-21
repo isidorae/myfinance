@@ -1,4 +1,4 @@
-import "../dashboard.css"
+import "./dashboard.css"
 
 import Card from "./Card";
 

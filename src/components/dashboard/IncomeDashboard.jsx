@@ -1,4 +1,4 @@
-import "../dashboard.css";
+import "./dashboard.css";
 import { MdStars } from "react-icons/md";
 import Card from "./Card";
 
