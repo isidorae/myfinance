@@ -10,6 +10,7 @@ import Incomes from './pages/Incomes'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import UserInfo from './pages/UserInfo'
+import Transactions from './pages/Transactions'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/dashboard/expenses" element={< Expenses />} />
         <Route path="/dashboard/incomes" element={ < Incomes />} />
         <Route path="/dashboard/:id" element={ < UserInfo/>} />
+        <Route path="/history" element={ < Transactions/>} />
         <Route path="/*" element={< Navigate to='/'/>} />
       </Routes>
       <Footer/>
