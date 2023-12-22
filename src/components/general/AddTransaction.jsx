@@ -1,4 +1,4 @@
-
+import '../general.css'
 
 function AddTransaction({placeholder, TransType}) {
 

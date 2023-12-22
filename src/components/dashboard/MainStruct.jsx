@@ -13,7 +13,7 @@ function MainStruct() {
     return(
         <>
         <div>
-            <Container className="dashboard-items-container">
+            <Container className="dashboard-items-container p-2">
                 <Row>
                     <Col>
                        <ExpensesIncomeSummary/>
@@ -22,7 +22,7 @@ function MainStruct() {
                         <HistoryDashboard/>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="p-2">
                      <Col>
                         <ExpensesDashboard/>
                     </Col>

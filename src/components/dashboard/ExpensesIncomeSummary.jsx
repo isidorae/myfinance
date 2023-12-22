@@ -3,7 +3,7 @@ import "./dashboard.css"
 function ExpensesIncomeSummary() {
 
     return(
-        <div className="box-container">
+        <div className="box-container d-flex flex-column justify-content-center">
             <h2>Resumen General</h2>
             <section className="dash-exp-card d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center">

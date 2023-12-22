@@ -6,39 +6,37 @@ function HistoryDashboard() {
     <>
       <div className="box-container">
         <h2>Últimos movimientos</h2>
-        <section className="d-flex flex-column align-items-start">
-          <div className="history-card-container d-flex align-items-start justify-content-around">
-            <p className="me-2">
-              <b>Bencina</b>
-            </p>
-            <p className="me-2">-$15000</p>
-            <p className="me-2">Bencina semanal</p>
-            <button className="text-center del-btn">X</button>
-          </div>
-          <div className="history-card-container d-flex align-items-start justify-content-around">
-            <p className="me-2">
-              <b>Cuadro</b>
-            </p>
-            <p className="me-2">+$10000</p>
-            <p className="me-2">Venta cuadro</p>
-            <button className="align-content-end del-btn">X</button>
-          </div>
-          <div className="history-card-container d-flex align-items-start justify-content-around">
-            <p className="me-2">
-              <b>Cuadro</b>
-            </p>
-            <p className="me-2">+$10000</p>
-            <p className="me-2">Venta cuadro</p>
-            <button className="align-content-end del-btn">X</button>
-          </div>
-          <div className="history-card-container d-flex align-items-start justify-content-around">
-            <p className="me-2">
-              <b>Cuadro</b>
-            </p>
-            <p className="me-2">+$10000</p>
-            <p className="me-2">Venta cuadro</p>
-            <button className="align-content-end del-btn">X</button>
-          </div>
+        <section className="d-flex flex-column justify-content-center">
+          <TransactionCard
+            title="Bencina"
+            amount="15000"
+            comment="Bencina semanal"
+            date="18/12/23"
+          />
+          <TransactionCard
+            title="Cuadro"
+            amount="10000"
+            comment="Venta cuadro"
+            date="16/12/23"
+          />
+          <TransactionCard
+            title="Cuadro"
+            amount="10000"
+            comment="Venta cuadro"
+            date="16/12/23"
+          />
+          <TransactionCard
+            title="Cuadro"
+            amount="10000"
+            comment="Venta cuadro"
+            date="16/12/23"
+          />
+          <TransactionCard
+            title="Cuadro"
+            amount="10000"
+            comment="Venta cuadro"
+            date="16/12/23"
+          />
         </section>
       </div>
     </>

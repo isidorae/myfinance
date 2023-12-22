@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import TransactionCard from '../general/TransactionCard';
+import PaginationBtns from '../general/PaginationBtns';
 
 function IncomeMain() {
 
@@ -31,13 +32,16 @@ function IncomeMain() {
                                 title="Sueldo"
                                 amount="100000"
                                 comment="Sueldo microsoft full time"
+                                date="19/12/23"
                             />
                             <TransactionCard
                                 title="Freelance"
                                 amount="50000"
                                 comment="Arte"
+                                date="18/12/23"
                             />
                         </section>
+                        <PaginationBtns />
                     </div>
                     </Col>
                 </Row>

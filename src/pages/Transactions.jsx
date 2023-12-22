@@ -1,10 +1,11 @@
+import HistoryComp from "../components/history/HistoryComp"
 
 function Transactions() {
 
     return (
         <>
          <div className="frame-view-parent" >
-            <h1>Historial</h1>
+            <HistoryComp />
         </div>
         </>
     )

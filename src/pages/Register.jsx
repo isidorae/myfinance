@@ -1,10 +1,11 @@
+import RegisterForm from "../components/account/RegisterForm"
 
 function Register() {
 
     return(
         <>
          <div className="frame-view-parent" >
-        <h1>Register</h1>
+        <RegisterForm />
         </div>
         </>
     )

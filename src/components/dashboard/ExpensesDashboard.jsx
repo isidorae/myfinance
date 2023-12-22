@@ -66,7 +66,7 @@ function ExpensesDashboard () {
                             />
                               <Card 
                             icon={FaComputer}
-                            title="Tecnologías"
+                            title="Tecnología"
                             value="1000"
                             />
                               <Card 

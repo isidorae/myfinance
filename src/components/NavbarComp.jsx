@@ -1,3 +1,4 @@
+import './general.css'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,6 +8,8 @@ import { IoMdPaper } from "react-icons/io";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { PiBank } from "react-icons/pi";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 
 function NavbarComp () {
@@ -15,31 +18,10 @@ const isAuth = true;
 
 return (
     <>
-      {/* <Navbar bg="light" data-bs-theme="light">
-        <Container>
-          <Navbar.Brand href="/dashboard">MyFinance</Navbar.Brand>
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              { isAuth 
-              ? <>
-              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-              <Nav.Link href="/dashboard">Transacciones</Nav.Link>
-              <Nav.Link href="/dashboard">Gastos</Nav.Link>
-              <Nav.Link href="/dashboard">Ingresos</Nav.Link>
-              <Nav.Link href="#">Logout</Nav.Link>
-                </>
-              : <>
-              <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
-              </>}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary" bg="light" data-bs-theme="light">
       <Container>
         {isAuth
-        ? <Navbar.Brand href="/dashboard">MyFinance</Navbar.Brand>
+        ? <Navbar.Brand href="/dashboard" >MyFinance</Navbar.Brand>
         : <Navbar.Brand href="/">MyFinance</Navbar.Brand>
          }
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -55,15 +37,14 @@ return (
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="#">Logout</Nav.Link>
+              <Nav.Link href="#"><IoMdLogOut className="logout" title="cerrar sesión"/></Nav.Link> 
             </Nav>
             </>
           : <>
               <Nav className="me-auto">
-                <Nav.Link href="/">Inicio</Nav.Link>
               </Nav>
               <Nav>
-                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link href="/login"><FaRegCircleUser className="logout" title="iniciar sesión"/></Nav.Link>
               </Nav>
               </>
           

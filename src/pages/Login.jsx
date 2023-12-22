@@ -1,10 +1,11 @@
+import LoginForm from "../components/account/LoginForm"
 
 function Login() {
 
     return(
         <>
         <div className="frame-view-parent" >
-        <h1>Login</h1>
+        <LoginForm />
         </div>
         </>
     )
