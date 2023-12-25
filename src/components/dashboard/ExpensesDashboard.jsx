@@ -16,6 +16,7 @@ import { PiMaskHappy } from "react-icons/pi";
 import { FaCarSide } from "react-icons/fa";
 import { BiHomeHeart } from "react-icons/bi";
 import { RiStockLine } from "react-icons/ri";
+import { MdOutlinePets } from "react-icons/md";
 
 
 function ExpensesDashboard () {
@@ -77,6 +78,11 @@ function ExpensesDashboard () {
                              <Card 
                             icon={PiShootingStarBold}
                             title="Estética/Belleza"
+                            value="500"
+                            />
+                            <Card 
+                            icon={ MdOutlinePets }
+                            title="Mascotas"
                             value="500"
                             />
                              <Card 
