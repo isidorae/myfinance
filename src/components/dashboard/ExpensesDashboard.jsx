@@ -27,7 +27,7 @@ function ExpensesDashboard () {
                         <section className="box-container d-flex flex-column justify-content-center">
                             <Card 
                             icon={PiBowlFoodFill}
-                            title="Alimentacion"
+                            title="Alimentación"
                             value="30000"
                             />
                             <Card 

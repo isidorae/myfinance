@@ -8,16 +8,12 @@ function DateComponent() {
 
     const dateToday = new Date()
     const dateToString = JSON.stringify(dateToday)
-    const dateFormatted = dateToString.slice(1,11)
+    const dateFormatted = dateToString.slice(1,11) //YY-MM-DD
     const dateArr = dateFormatted.split("-")
     const dateDDMMYY = `${dateArr[2]}/${dateArr[1]}/${dateArr[0]}` //day/month/year format
-    console.log(dateDDMMYY)
-    console.log(dateArr)
 
     const dateNow_MONTH = dateArr[1]
     const dateNow_YEAR = dateArr[0]
-    console.log(dateNow_MONTH)
-    console.log(typeof months[0])
 
     // useEffect(() => {
     //     getMonth(dateNow_MONTH)
@@ -64,7 +60,14 @@ function DateComponent() {
             break;
     }
 
-    console.log(defaultMonthValue)
+
+    function showSelectedMonth(e) {
+        console.log(e.target.value)
+    }
+
+    function showSelectedYear(e) {
+        console.log(e.target.value)
+    }   
 
     return (
         <>
@@ -74,19 +77,18 @@ function DateComponent() {
                 <p>{dateDDMMYY}</p>
             </div>
             <label className="me-2">Resumen Mes</label>
-            <select name="date" value="date" defaultValue="">
+            <select onChange={(e) => showSelectedMonth(e)} name="date" >
             <option defaultValue={defaultMonthValue}>{defaultMonthValue}</option>
                 {months.map((month, index) => {
                     if (month != defaultMonthValue) {
-                        return <option key={index}>{month}</option>
+                        return <option key={index} value={month}>{month}</option>
                     }
                 })}
             </select>
             <label className="ms-2 me-2">y Año </label>
-            <select name="year" value="year">
+            <select onChange={(e) => showSelectedYear(e)} name="year">
             <option defaultValue>{dateNow_YEAR}</option>
                 {years_arr.map((year, index) => {
-                    console.log(year)
                     if (year != dateNow_YEAR) {
                         return <option key={index} >{year}</option>
                     }
