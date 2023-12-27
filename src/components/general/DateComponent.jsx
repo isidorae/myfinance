@@ -1,102 +1,59 @@
-import { useState, useEffect } from 'react'
-import { months } from '../dashboard/months.json'
-// import { getMonth, defaultMonthValue } from './getMonth';
+import { useContext, useEffect } from "react";
+import { months } from "../dashboard/months.json";
+import DateContext from "../../context/DateContext";
 
 function DateComponent() {
+  const {
+    years_arr,
+    refMonthSelect,
+    defaultMonthValue,
+    dateDDMMYY,
+    dateNow_YEAR,
+    showSelectedMonth,
+    showSelectedYear,
+  } = useContext(DateContext);
 
-    let defaultMonthValue;
-
-    const dateToday = new Date()
-    const dateToString = JSON.stringify(dateToday)
-    const dateFormatted = dateToString.slice(1,11) //YY-MM-DD
-    const dateArr = dateFormatted.split("-")
-    const dateDDMMYY = `${dateArr[2]}/${dateArr[1]}/${dateArr[0]}` //day/month/year format
-
-    const dateNow_MONTH = dateArr[1]
-    const dateNow_YEAR = dateArr[0]
-
-    // useEffect(() => {
-    //     getMonth(dateNow_MONTH)
-    // }, [])
-
-    const years_arr = [2023, 2024]
-
-    switch(dateNow_MONTH) {
-        case "01":
-            defaultMonthValue = months[0]
-            break;
-        case "02":
-            defaultMonthValue = months[1]
-            break;
-        case "03":
-            defaultMonthValue = months[2]
-            break;
-        case "04":
-            defaultMonthValue = months[3]
-            break;
-        case "05":
-            defaultMonthValue = months[4]
-            break;
-        case "06":
-            defaultMonthValue = months[5]
-            break;
-        case "07":
-            defaultMonthValue = months[6]
-            break;
-        case "08":
-            defaultMonthValue = months[7]
-            break;
-        case "09":
-            defaultMonthValue = months[8]
-            break;
-        case "10":
-            defaultMonthValue = months[9]
-            break;
-        case "11":
-            defaultMonthValue = months[10]
-            break;
-        case "12":
-            defaultMonthValue = months[11]
-            break;
-    }
-
-
-    function showSelectedMonth(e) {
-        console.log(e.target.value)
-    }
-
-    function showSelectedYear(e) {
-        console.log(e.target.value)
-    }   
-
-    return (
-        <>
-        <div className="mb-4">
-            <div className="d-flex justify-content-center">
-                <p className="me-2">Fecha hoy:</p>
-                <p>{dateDDMMYY}</p>
-            </div>
-            <label className="me-2">Resumen Mes</label>
-            <select onChange={(e) => showSelectedMonth(e)} name="date" >
-            <option defaultValue={defaultMonthValue}>{defaultMonthValue}</option>
-                {months.map((month, index) => {
-                    if (month != defaultMonthValue) {
-                        return <option key={index} value={month}>{month}</option>
-                    }
-                })}
+  return (
+    <>
+      <div className="mb-4">
+        <div className="d-flex justify-content-center">
+          <p className="me-2">Fecha hoy:</p>
+          <p>{dateDDMMYY}</p>
+        </div>
+        <label className="me-2">Resumen Mes</label>
+            <select
+            ref={refMonthSelect}
+            onChange={(e) => showSelectedMonth(e)}
+            name="date"
+            className="select-input"
+            >
+            <option defaultValue={defaultMonthValue.value}>
+                {defaultMonthValue.month}
+            </option>
+            {months.map((month, index) => {
+                return (
+                <option key={index} value={month.value}>
+                    {month.month}
+                </option>
+                );
+            })}
             </select>
             <label className="ms-2 me-2">y Año </label>
-            <select onChange={(e) => showSelectedYear(e)} name="year">
+            <select
+            onChange={(e) => showSelectedYear(e)}
+            name="year"
+            className="select-input"
+            >
             <option defaultValue>{dateNow_YEAR}</option>
-                {years_arr.map((year, index) => {
-                    if (year != dateNow_YEAR) {
-                        return <option key={index} >{year}</option>
-                    }
-                })}
+            {years_arr.map((year, index) => {
+                if (year != dateNow_YEAR) {
+                return <option key={index}>{year}</option>;
+                }
+            })}
             </select>
-        </div>
-        </>
-    )
+      </div>
+    </>
+  );
 }
 
-export default DateComponent
+export default DateComponent;

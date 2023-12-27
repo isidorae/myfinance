@@ -13,6 +13,8 @@ function AddTransaction({placeholder, TransType}) {
 
     const [startDate, setStartDate] = useState(new Date());
 
+    const CATEGORIES_SORTED = categories.sort()
+
     function gatherTransactionData(e) {
 
         e.preventDefault()
@@ -42,7 +44,7 @@ function AddTransaction({placeholder, TransType}) {
             <form onSubmit={gatherTransactionData} className="d-flex flex-column">
                 <select name="category" onChange={(e) => setCategory(e.target.value)} className="select-input mb-1">
                     <option>--Categoría--</option>
-                        {categories.map((category, index) => {
+                        {CATEGORIES_SORTED.map((category, index) => {
                             return <option key={index} value={category}>{category}</option>
                         })}
                 </select>

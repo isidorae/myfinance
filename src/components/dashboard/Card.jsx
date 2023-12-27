@@ -1,9 +1,9 @@
 import "./dashboard.css"
 
-function Card({icon: IconComponent, title, value }) {
+function Card({icon: IconComponent, title, value, key }) {
 
     return(
-        <div className="dash-exp-card d-flex align-items-center justify-content-between">
+        <div key={key} className="dash-exp-card d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center">
             < IconComponent  className="me-2"/>
             <p className="me-2">{title}</p>

@@ -19,12 +19,23 @@ import { RiStockLine } from "react-icons/ri";
 import { MdOutlinePets } from "react-icons/md";
 
 
-function ExpensesDashboard () {
+function ExpensesDashboard ({expensesData}) {
+
+  console.log("***** expenses dashboard ******")
+  console.log(expensesData)
 
     return (
         <>
         <h2>Resumen Gastos</h2>
                         <section className="box-container d-flex flex-column justify-content-center">
+                          {/* {expensesData.map((expense) => {
+                             return <Card 
+                             icon={PiBowlFoodFill}
+                             key={expense._id}
+                             title={expense.category}
+                             value={expense.amount}
+                             />
+                          })} */}
                             <Card 
                             icon={PiBowlFoodFill}
                             title="Alimentación"
