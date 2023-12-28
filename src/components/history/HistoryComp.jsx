@@ -1,5 +1,5 @@
 import '../general.css'
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import DateComponent from '../general/DateComponent';
 import PaginationBtns from '../general/PaginationBtns';
 import TransactionCard from '../general/TransactionCard'
@@ -12,6 +12,7 @@ function HistoryComp() {
     const {transactionHistory} = useContext(TransactionContext)
     const {selectedMonth, selectedYear} = useContext(DateContext)
 
+//****************************** GET DATA BY MONTH ************************* /
 
     //CREAR NUEVO ARRAY CON TRANSACTIONS QUE QUE COINCIDAN CON MES Y AÑO SELECCIONADO
     const historyFilterDataByMonth = transactionHistory.filter(transaction => {
@@ -38,6 +39,11 @@ function HistoryComp() {
             setPageIndex((prevPageIndex) => prevPageIndex + 1);
         }
     }
+
+     //**** reset page index to first page */
+     useEffect(() => {
+        setPageIndex(0)
+    }, [selectedMonth, selectedYear])
 
    return(
     <>
