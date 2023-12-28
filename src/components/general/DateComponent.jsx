@@ -22,15 +22,19 @@ function DateComponent() {
         </div>
         <label className="me-2">Resumen Mes</label>
             <select
+            key="select0123"
             ref={refMonthSelect}
             onChange={(e) => showSelectedMonth(e)}
             name="date"
             className="select-input"
             >
-            <option defaultValue={defaultMonthValue.value}>
-                {defaultMonthValue.month}
-            </option>
+             <option key="defaultmonth0123" value={defaultMonthValue.value} defaultValue={defaultMonthValue.value}>
+                        {defaultMonthValue.month}
+              </option>
             {months.map((month, index) => {
+                 if (month.month === defaultMonthValue.month) {
+                  return console.log(`${month.month} is default.`)
+                 }
                 return (
                 <option key={index} value={month.value}>
                     {month.month}

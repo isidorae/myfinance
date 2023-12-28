@@ -1,11 +1,11 @@
 import '../general.css'
 
-function TransactionCard({title, amount, comment, date}) {
+function TransactionCard({title, amount, comment, date, key}) {
 
     return (
         <>
         <div className="transaction-card d-flex align-items-start justify-content-between">
-            <section className="d-flex">
+            <section key={key} className="d-flex">
                 <p className="me-2">
                 <b className="dmserif-font">{title}</b>
                 </p>

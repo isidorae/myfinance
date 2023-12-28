@@ -80,6 +80,16 @@ input {
 
 }
 
+.page-active {
+    font-family: 'DM Serif Display', serif;
+    background-color: #969aec;
+    color: white;
+    border: none;
+    margin: 0.2rem;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
 .logout {
     font-size: 1.5rem;
 }

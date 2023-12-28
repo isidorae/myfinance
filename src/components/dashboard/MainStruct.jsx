@@ -14,6 +14,7 @@ import DateContext from "../../context/DateContext";
 
 function MainStruct({incomeData, expensesData}) {
 
+    //*********** history array ordered by date */
     const { transactionHistory } = useContext(TransactionContext)
     const { selectedMonth, selectedYear } = useContext(DateContext)
 
@@ -21,13 +22,16 @@ function MainStruct({incomeData, expensesData}) {
     console.log("selectedYear:", selectedYear) //formato 23, 24, etcc.... 
 
     //CREAR NUEVO ARRAY CON TRANSACTIONS QUE QUE COINCIDAN CON MES Y AÑO SELECCIONADO
-    const testFilterData = transactionHistory.filter(transaction => {
+    const historyFilterDataByMonth = transactionHistory.filter(transaction => {
        let date = transaction.date
        let splitdate = date.slice(3, 8)
        console.log(splitdate)
        return splitdate == `${selectedMonth}/${selectedYear}`
     })
-    console.log("testfilterdata", testFilterData) //testeando nuevo array creado segun mes y año seleccionado ✅
+    console.log("testfilterdata", historyFilterDataByMonth) //testeando nuevo array creado segun mes y año seleccionado ✅
+
+    let lastFiveTransactions = historyFilterDataByMonth.slice((historyFilterDataByMonth.length - 5), (historyFilterDataByMonth.length))
+    console.log(lastFiveTransactions)
 
     return(
         <>
@@ -39,7 +43,7 @@ function MainStruct({incomeData, expensesData}) {
                     </Col>
                     <Col>
                         <HistoryDashboard
-                        historyData={transactionHistory}/>
+                        historyData={lastFiveTransactions}/>
                     </Col>
                 </Row>
                 <Row className="p-2">
