@@ -10,6 +10,8 @@ import PaginationBtns from '../general/PaginationBtns';
 import TransactionContext from '../../context/TransactionContext';
 import DateContext from '../../context/DateContext';
 
+import { categories } from '../general/categories.json'
+
 function ExpensesMain() {
 
     const {getTransactionData, expensesData, setExpensesData } = useContext(TransactionContext)
@@ -63,6 +65,7 @@ function ExpensesMain() {
                         <div className="box-container d-flex flex-column align-items-center">
                             <h2>Añadir Gasto</h2>
                             <AddTransaction
+                            categories={categories}
                             placeholder="Nombre egreso"
                             TransType="expense"
                             />

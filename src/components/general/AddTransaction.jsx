@@ -1,10 +1,10 @@
 import '../general.css'
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
-import { categories } from './categories.json'
+// import { categories } from './categories.json'
 import "react-datepicker/dist/react-datepicker.css";
 
-function AddTransaction({placeholder, TransType}) {
+function AddTransaction({placeholder, TransType, categories}) {
 
     const [category, setCategory] = useState("")
     const [title, setTitle] = useState("")

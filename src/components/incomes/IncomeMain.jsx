@@ -11,6 +11,8 @@ import PaginationBtns from '../general/PaginationBtns';
 import TransactionContext from '../../context/TransactionContext';
 import DateContext from '../../context/DateContext';
 
+import { categories } from '../general/income_categories.json'
+
 function IncomeMain() {
 
     const {getTransactionData, incomeData, setIncomeData} = useContext(TransactionContext)
@@ -65,6 +67,7 @@ function IncomeMain() {
                         <div className="box-container d-flex flex-column align-items-center">
                             <h2>Agregar</h2>
                             <AddTransaction
+                            categories={categories}
                             placeholder="Nombre ingreso"
                             TransType="income"
                             />

@@ -5,7 +5,7 @@ import TransactionContext from "../context/TransactionContext"
 
 function Dashboard() {
 
-    const { getTransactionData, getTransactionHistory, incomeData, expensesData } = useContext(TransactionContext)
+    const { getTransactionData, getTransactionHistory } = useContext(TransactionContext)
 
     useEffect(() => {
       userTransactionsData()
@@ -23,10 +23,7 @@ function Dashboard() {
         <div className="d-flex flex-column justify-content-center frame-view-parent">
         <h1 className="mt-5">Hola @Usuario</h1>
         <DateComponent />
-        <MainStruct
-        incomeData={incomeData}
-        expensesData={expensesData}
-        />
+        <MainStruct/>
         </div>
         </>
     )

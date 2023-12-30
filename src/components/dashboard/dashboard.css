@@ -77,3 +77,13 @@
     max-width: 500px;
     min-width: 250px;
 }
+
+.positive-diff {
+    border: 1px solid rgb(95, 137, 95);
+    background-color: rgb(232, 247, 232);
+}
+
+.negative-diff {
+    border: 1px solid rgb(137, 95, 95);
+    background-color: rgb(247, 232, 232);
+}
