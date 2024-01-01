@@ -23,19 +23,26 @@ function HistoryComp() {
      })
     //  console.log("testfilterdata", historyFilterDataByMonth) //testeando nuevo array creado segun mes y año seleccionado ✅
 
+       //******* SORT by date (latest added goes first) */
+       let HistoryByMonth_SORTED = historyFilterDataByMonth.sort((a, b) => {
+        console.log(a.date.slice(0,2))
+        return b.date.slice(0,2) - a.date.slice(0,2);
+           })
+        console.log(HistoryByMonth_SORTED)
+
 //****************************** PAGINATION ****************************** /
 
     const [pageIndex, setPageIndex] = useState(0)
-    const itemsPerPage = 2;
+    const itemsPerPage = 10;
 
     const startIndex = pageIndex * itemsPerPage; 
-    const endIndex = Math.min((pageIndex + 1) * itemsPerPage, historyFilterDataByMonth.length)
-    let transactionsToDisplay = historyFilterDataByMonth.slice(startIndex, endIndex);
+    const endIndex = Math.min((pageIndex + 1) * itemsPerPage, HistoryByMonth_SORTED.length)
+    let transactionsToDisplay = HistoryByMonth_SORTED.slice(startIndex, endIndex);
 
     const changeTrscPage = (value) => {
         if (value === 'prev' && pageIndex > 0) {
             setPageIndex((prevPageIndex) => prevPageIndex - 1);
-        } else if (value === 'next' && pageIndex < Math.ceil(historyFilterDataByMonth.length / itemsPerPage) -1) {
+        } else if (value === 'next' && pageIndex < Math.ceil(HistoryByMonth_SORTED.length / itemsPerPage) -1) {
             setPageIndex((prevPageIndex) => prevPageIndex + 1);
         }
     }
@@ -54,11 +61,12 @@ function HistoryComp() {
         {transactionsToDisplay.map(data => {
                 return <>
                 <TransactionCard
-                key={data._id}
+                id={data._id}
                 title={data.title}
                 amount={data.amount}
                 comment={data.comment}
                 date={data.date}
+                transaction_type={data.transaction_type}
                 />
             </>
             })

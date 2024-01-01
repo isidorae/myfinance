@@ -79,11 +79,21 @@
 }
 
 .positive-diff {
-    border: 1px solid rgb(95, 137, 95);
-    background-color: rgb(232, 247, 232);
+
+    p {
+        color: rgb(128, 161, 128);
+    }
 }
 
 .negative-diff {
-    border: 1px solid rgb(137, 95, 95);
-    background-color: rgb(247, 232, 232);
+
+    p {
+        color: rgb(160, 110, 110);
+    }
+}
+
+.empty-style {
+    p {
+        color: black;
+    }
 }

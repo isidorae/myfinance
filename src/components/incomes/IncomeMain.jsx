@@ -15,7 +15,7 @@ import { categories } from '../general/income_categories.json'
 
 function IncomeMain() {
 
-    const {getTransactionData, incomeData, setIncomeData} = useContext(TransactionContext)
+    const {getTransactionData, incomeData} = useContext(TransactionContext)
     const {selectedMonth, selectedYear} = useContext(DateContext)
 
     useEffect(() => {
@@ -35,19 +35,28 @@ function IncomeMain() {
         return splitdate == `${selectedMonth}/${selectedYear}`
      })
 
+       //******* SORT by date (latest added goes first) */
+       let IncomeByMonth_SORTED = filterIncomesByMonth.sort((a, b) => {
+        console.log(a.date.slice(0,2))
+        return b.date.slice(0,2) - a.date.slice(0,2);
+           })
+        console.log(IncomeByMonth_SORTED)
+
+        setSelectedMonthIncomeData(IncomeByMonth_SORTED)
+
      //****************************** PAGINATION ****************************** /
 
      const [pageIndex, setPageIndex] = useState(0)
      const itemsPerPage = 5;
  
      const startIndex = pageIndex * itemsPerPage; 
-     const endIndex = Math.min((pageIndex + 1) * itemsPerPage, filterIncomesByMonth.length)
-     let incomesToDisplay = filterIncomesByMonth.slice(startIndex, endIndex);
+     const endIndex = Math.min((pageIndex + 1) * itemsPerPage, IncomeByMonth_SORTED.length)
+     let incomesToDisplay = IncomeByMonth_SORTED.slice(startIndex, endIndex);
  
      const changeIncomesPage = (value) => {
          if (value === 'prev' && pageIndex > 0) {
              setPageIndex((prevPageIndex) => prevPageIndex - 1);
-         } else if (value === 'next' && pageIndex < Math.ceil(filterIncomesByMonth.length / itemsPerPage) -1) {
+         } else if (value === 'next' && pageIndex < Math.ceil(IncomeByMonth_SORTED.length / itemsPerPage) -1) {
              setPageIndex((prevPageIndex) => prevPageIndex + 1);
          }
      }
@@ -80,11 +89,12 @@ function IncomeMain() {
                             {incomesToDisplay.map(data => {
                                 return <>
                                  <TransactionCard
-                                key={data._id}
+                                id={data._id}
                                 title={data.title}
                                 amount={data.amount}
                                 comment={data.comment}
                                 date={data.date}
+                                transaction_type={data.transaction_type}
                             />
                                 </>
                             })}

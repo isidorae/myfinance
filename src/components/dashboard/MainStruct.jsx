@@ -35,6 +35,12 @@ function MainStruct() {
     let lastFiveTransactions = historyFilterDataByMonth.slice((historyFilterDataByMonth.length - 5), (historyFilterDataByMonth.length))
     console.log(lastFiveTransactions)
 
+         //******* SORT by date the last 5 transactions */
+         let lastFive_SORTED = lastFiveTransactions.sort((a, b) => {
+            console.log(a.date.slice(0,2))
+            return b.date.slice(0,2) - a.date.slice(0,2);
+               })
+
      //************************************ RESUMEN GENERAL************************/
 
       //*** SUMA incomes  ****/
@@ -62,6 +68,7 @@ function MainStruct() {
     console.log(expenseDataFilterByMonth)
     let expensesSum = 0;
 
+
     const sumExpenses = expenseDataFilterByMonth.forEach(expense => {
         let amountToInt= parseInt(expense.amount)
         return expensesSum += amountToInt
@@ -83,7 +90,7 @@ function MainStruct() {
                     </Col>
                     <Col>
                         <HistoryDashboard
-                        historyData={lastFiveTransactions}/>
+                        historyData={lastFive_SORTED}/>
                     </Col>
                 </Row>
                 <Row className="p-2">

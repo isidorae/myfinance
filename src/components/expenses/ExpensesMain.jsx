@@ -16,14 +16,23 @@ function ExpensesMain() {
 
     const {getTransactionData, expensesData, setExpensesData } = useContext(TransactionContext)
     const {selectedMonth, selectedYear} = useContext(DateContext)
+    const [reloadData, setReloadData ] = useState(false)
 
     useEffect(() => {
         getData()
-    }, [])
+        setReloadData(false)
+        // if (reloadData) {
+        //     getData()
+        //     setReloadData(false)
+        // }
+    }, [reloadData])
 
     function getData(){
         getTransactionData("expense", "id1")
     }
+
+    //********* RELOAD DATA WHEN TRANSACTION ADDED */
+  
 
      //****************************** GET DATA BY MONTH ************************* /
 
@@ -33,20 +42,27 @@ function ExpensesMain() {
         // console.log(splitdate)
         return splitdate == `${selectedMonth}/${selectedYear}`
      })
+
+     //******* SORT by date (latest added goes first) */
+     let ExpensesByMonth_SORTED = filterExpensesByMonth.sort((a, b) => {
+     console.log(a.date.slice(0,2))
+     return b.date.slice(0,2) - a.date.slice(0,2);
+        })
+     console.log(ExpensesByMonth_SORTED)
     
      //****************************** PAGINATION ****************************** /
 
      const [pageIndex, setPageIndex] = useState(0)
-     const itemsPerPage = 2;
+     const itemsPerPage = 5;
  
      const startIndex = pageIndex * itemsPerPage; 
-     const endIndex = Math.min((pageIndex + 1) * itemsPerPage, filterExpensesByMonth.length)
-     let expensesToDisplay = filterExpensesByMonth.slice(startIndex, endIndex);
+     const endIndex = Math.min((pageIndex + 1) * itemsPerPage, ExpensesByMonth_SORTED.length)
+     let expensesToDisplay = ExpensesByMonth_SORTED.slice(startIndex, endIndex);
  
      const changeExpensesPage = (value) => {
          if (value === 'prev' && pageIndex > 0) {
              setPageIndex((prevPageIndex) => prevPageIndex - 1);
-         } else if (value === 'next' && pageIndex < Math.ceil(filterExpensesByMonth.length / itemsPerPage) -1) {
+         } else if (value === 'next' && pageIndex < Math.ceil(ExpensesByMonth_SORTED.length / itemsPerPage) -1) {
              setPageIndex((prevPageIndex) => prevPageIndex + 1);
          }
      }
@@ -78,11 +94,13 @@ function ExpensesMain() {
                             {expensesToDisplay.map(expense => {
                                 return <>
                                 <TransactionCard
-                                key={expense._id}
+                                id={expense._id}
                                 title={expense.title}
                                 amount={expense.amount}
                                 comment={expense.comment}
                                 date={expense.date}
+                                transaction_type={expense.transaction_type}
+                                setReloadData={setReloadData}
                             />
                                 </>
                             })}

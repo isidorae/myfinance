@@ -1,10 +1,13 @@
 import '../general.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import DatePicker from 'react-datepicker'
-// import { categories } from './categories.json'
 import "react-datepicker/dist/react-datepicker.css";
 
-function AddTransaction({placeholder, TransType, categories}) {
+import TransactionContext from '../../context/TransactionContext';
+
+function AddTransaction({placeholder, TransType, categories, setReloadData}) {
+
+    const { sendTransactionReq, getTransactionData } = useContext(TransactionContext)
 
     const [category, setCategory] = useState("")
     const [title, setTitle] = useState("")
@@ -12,6 +15,8 @@ function AddTransaction({placeholder, TransType, categories}) {
     const [comment, setComment] = useState("")
 
     const [startDate, setStartDate] = useState(new Date());
+
+    let userId = "id1"
 
     const CATEGORIES_SORTED = categories.sort()
 
@@ -31,11 +36,31 @@ function AddTransaction({placeholder, TransType, categories}) {
             title,
             amount,
             comment,
-            type: TransType,
-            date: SHORT_DATE_DD_MM_YY
+            transaction_type: TransType,
+            date: SHORT_DATE_DD_MM_YY,
+            user_id: userId
         }
 
         console.log(data)
+
+        sendTransactionReq(data, TransType)
+        .then(() => {
+            // setReloadData(true)
+            resetValues()
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.error("error sending Transaction: ", error);
+        })
+
+    }
+
+    function resetValues() {
+        return setCategory(""),
+        setTitle(""),
+        setAmount(""),
+        setComment(""),
+        setStartDate(new Date())
     }
 
     return(

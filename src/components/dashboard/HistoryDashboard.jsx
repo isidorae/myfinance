@@ -15,6 +15,7 @@ function HistoryDashboard({historyData}) {
             amount={data.amount}
             comment={data.comment}
             date={data.date}
+            transaction_type={data.transaction_type}
           />
             </>
           })}

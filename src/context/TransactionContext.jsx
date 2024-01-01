@@ -1,9 +1,8 @@
 import { createContext, useState} from "react";
-import { addIncomeReq, addExpenseReq,
+import { addTransactionReq,
     getUserTransactionData,
-    getUserTransactionDataByMonth,
-    getUserTransactionCategoryData,
-    getTransactionsHistory
+    getTransactionsHistory,
+    deleteTransaction
     } from "../hooks/userTransactions";
 
 
@@ -14,8 +13,21 @@ const TransactionProvider = ({ children }) => {
 const [incomeData, setIncomeData] = useState([])
 const [expensesData, setExpensesData] = useState([])
 const [transactionHistory, setTransactionHistory] = useState([])
-const [selectedMonthIncomeData, setSelectedMonthIncomeData] = useState([])
-const [selectedMonthExpensesData, setSelectedMonthExpensesData] = useState([])
+// const [selectedMonthIncomeData, setSelectedMonthIncomeData] = useState([])
+// const [selectedMonthExpensesData, setSelectedMonthExpensesData] = useState([])
+
+//add expense || income
+const sendTransactionReq = async (body, type) => {
+    try {
+        const res = await addTransactionReq(body, type)
+        const data = await res.data.detail
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+        console.log(error.response.data.message)
+    }
+}
+
 
 //get incomes & expenses
 const getTransactionData = async (transaction, id) => {
@@ -49,18 +61,12 @@ const getTransactionHistory = async (id) => {
     }
 }
 
-
-const filterTransactionsByMonth = async (month, transaction, id) => {
+//delete expense || income
+const deleteTransReq = async (id) => {
     try {
-        const res = await getUserTransactionDataByMonth(month, transaction, id)
-        const data = await res.data.detail
-
-        if (transaction == "income") {
-            return setSelectedMonthIncomeData(data)
-        } else {
-            return setSelectedMonthExpensesData(data)
-        }
-
+        const res = await deleteTransaction(id)
+        const deleted = await res.data.detail
+        console.log(deleted)
     } catch (error) {
         console.log(error)
         console.log(error.response.data.message)
@@ -68,14 +74,13 @@ const filterTransactionsByMonth = async (month, transaction, id) => {
 }
 
 const data = {
+    sendTransactionReq,
     getTransactionData,
     getTransactionHistory,
-    filterTransactionsByMonth,
-    setIncomeData,
-    incomeData,
-    setExpensesData,
-    expensesData,
-    transactionHistory
+    deleteTransReq,
+    setIncomeData, incomeData,
+    setExpensesData,expensesData,
+    transactionHistory,
 }
 
 return (

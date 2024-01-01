@@ -33,11 +33,11 @@ function ExpensesIncomeSummary({incomeSum, expensesSum}) {
                     <p className="font-large justify-self-end">${incomeSum}</p>
                 </div>
             </section>
-            <section className={`dash-exp-card d-flex align-items-center justify-content-between ${difference > 0 ? 'positive-diff' : 'negative-diff'}`}>
+            <section className="dash-exp-card d-flex align-items-center justify-content-between">
                 <div className="d-flex align-items-center">
                     <p className="me-2">Diferencia</p>
                 </div>
-                <div>
+                <div className={`${difference > 0 ? 'positive-diff' : 'negative-diff'} ${difference === 0 && 'empty-style'}`}>
                     <p className="font-large justify-self-end">
                         $ {differenceSign} {difference}
                         </p>
