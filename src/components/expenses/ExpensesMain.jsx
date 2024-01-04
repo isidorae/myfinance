@@ -15,7 +15,7 @@ import AuthContext from '../../context/AuthContext';
 
 function ExpensesMain() {
 
-    const {getTransactionData, expensesData } = useContext(TransactionContext)
+    const { getTransactionData, expensesData } = useContext(TransactionContext)
     const { userData } = useContext(AuthContext)
     const {selectedMonth, selectedYear} = useContext(DateContext)
     const [reloadData, setReloadData ] = useState(false)

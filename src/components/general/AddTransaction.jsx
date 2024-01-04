@@ -52,6 +52,12 @@ function AddTransaction({placeholder, TransType, categories, setReloadData}) {
         .then(() => {
             // setReloadData(true)
             resetValues()
+            if(TransType === "income") {
+                getTransactionData("income", userId)
+            } else {
+                getTransactionData("expense", userId)
+            }
+      
         })
         .catch((error) => {
             console.error("error sending Transaction: ", error);

@@ -30,28 +30,31 @@ function IncomeMain() {
 
     //****************************** GET DATA BY MONTH ************************* /
 
-    const filterIncomesByMonth = incomeData.filter(income => {
-        let date = income.date
-        let splitdate = date.slice(3, 8)
-        // console.log(splitdate)
-        return splitdate == `${selectedMonth}/${selectedYear}`
-     })
 
-       //******* SORT by date (latest added goes first) */
-       let IncomeByMonth_SORTED = filterIncomesByMonth.sort((a, b) => {
-        console.log(a.date.slice(0,2))
-        return b.date.slice(0,2) - a.date.slice(0,2);
-           })
-        console.log(IncomeByMonth_SORTED)
+        let filterIncomesByMonth = incomeData.filter(income => {
+            let date = income.date
+            let splitdate = date.slice(3, 8)
+            // console.log(splitdate)
+            return splitdate == `${selectedMonth}/${selectedYear}`
+         })
+    
+           //******* SORT by date (latest added goes first) */
+        let IncomeByMonth_SORTED = filterIncomesByMonth.sort((a, b) => {
+            console.log(a.date.slice(0,2))
+            return b.date.slice(0,2) - a.date.slice(0,2);
+               })
+            console.log(IncomeByMonth_SORTED)
 
         // console.log(selectedMonthIncomeData)
         // if (incomeData > 0) return setSelectedMonthIncomeData(IncomeByMonth_SORTED);
+
 
      //****************************** PAGINATION ****************************** /
 
      const [pageIndex, setPageIndex] = useState(0)
      const itemsPerPage = 5;
  
+
      const startIndex = pageIndex * itemsPerPage; 
      const endIndex = Math.min((pageIndex + 1) * itemsPerPage, IncomeByMonth_SORTED.length)
      let incomesToDisplay = IncomeByMonth_SORTED.slice(startIndex, endIndex);
