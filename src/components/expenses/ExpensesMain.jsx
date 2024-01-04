@@ -11,10 +11,12 @@ import TransactionContext from '../../context/TransactionContext';
 import DateContext from '../../context/DateContext';
 
 import { categories } from '../general/categories.json'
+import AuthContext from '../../context/AuthContext';
 
 function ExpensesMain() {
 
-    const {getTransactionData, expensesData, setExpensesData } = useContext(TransactionContext)
+    const {getTransactionData, expensesData } = useContext(TransactionContext)
+    const { userData } = useContext(AuthContext)
     const {selectedMonth, selectedYear} = useContext(DateContext)
     const [reloadData, setReloadData ] = useState(false)
 
@@ -28,7 +30,7 @@ function ExpensesMain() {
     }, [reloadData])
 
     function getData(){
-        getTransactionData("expense", "id1")
+        getTransactionData("expense", userData.id)
     }
 
     //********* RELOAD DATA WHEN TRANSACTION ADDED */
@@ -36,41 +38,45 @@ function ExpensesMain() {
 
      //****************************** GET DATA BY MONTH ************************* /
 
-     const filterExpensesByMonth = expensesData.filter(expense => {
-        let date = expense.date
-        let splitdate = date.slice(3, 8)
-        // console.log(splitdate)
-        return splitdate == `${selectedMonth}/${selectedYear}`
-     })
+     console.log(expensesData)
 
-     //******* SORT by date (latest added goes first) */
-     let ExpensesByMonth_SORTED = filterExpensesByMonth.sort((a, b) => {
-     console.log(a.date.slice(0,2))
-     return b.date.slice(0,2) - a.date.slice(0,2);
-        })
-     console.log(ExpensesByMonth_SORTED)
+        const filterExpensesByMonth = expensesData.filter(expense => {
+            let date = expense.date
+            let splitdate = date.slice(3, 8)
+            // console.log(splitdate)
+            return splitdate == `${selectedMonth}/${selectedYear}`
+         })
     
-     //****************************** PAGINATION ****************************** /
-
-     const [pageIndex, setPageIndex] = useState(0)
-     const itemsPerPage = 5;
- 
-     const startIndex = pageIndex * itemsPerPage; 
-     const endIndex = Math.min((pageIndex + 1) * itemsPerPage, ExpensesByMonth_SORTED.length)
-     let expensesToDisplay = ExpensesByMonth_SORTED.slice(startIndex, endIndex);
- 
-     const changeExpensesPage = (value) => {
-         if (value === 'prev' && pageIndex > 0) {
-             setPageIndex((prevPageIndex) => prevPageIndex - 1);
-         } else if (value === 'next' && pageIndex < Math.ceil(ExpensesByMonth_SORTED.length / itemsPerPage) -1) {
-             setPageIndex((prevPageIndex) => prevPageIndex + 1);
+         //******* SORT by date (latest added goes first) */
+         let ExpensesByMonth_SORTED = filterExpensesByMonth.sort((a, b) => {
+         console.log(a.date.slice(0,2))
+         return b.date.slice(0,2) - a.date.slice(0,2);
+            })
+         console.log(ExpensesByMonth_SORTED)
+        
+         //****************************** PAGINATION ****************************** /
+    
+         const [pageIndex, setPageIndex] = useState(0)
+         const itemsPerPage = 5;
+     
+         const startIndex = pageIndex * itemsPerPage; 
+         const endIndex = Math.min((pageIndex + 1) * itemsPerPage, ExpensesByMonth_SORTED.length)
+         let expensesToDisplay = ExpensesByMonth_SORTED.slice(startIndex, endIndex);
+     
+         const changeExpensesPage = (value) => {
+             if (value === 'prev' && pageIndex > 0) {
+                 setPageIndex((prevPageIndex) => prevPageIndex - 1);
+             } else if (value === 'next' && pageIndex < Math.ceil(ExpensesByMonth_SORTED.length / itemsPerPage) -1) {
+                 setPageIndex((prevPageIndex) => prevPageIndex + 1);
+             }
          }
-     }
-
-    //**** reset page index to first page */
-    useEffect(() => {
-        setPageIndex(0)
-    }, [selectedMonth, selectedYear])
+    
+        //**** reset page index to first page */
+        useEffect(() => {
+            setPageIndex(0)
+        }, [selectedMonth, selectedYear])
+  
+    
 
     return (
         <>
@@ -91,7 +97,9 @@ function ExpensesMain() {
                     <div className="box-container">
                         <h2>Historial</h2>
                         <section className="d-flex flex-column align-items-start">
-                            {expensesToDisplay.map(expense => {
+                        { expensesData.length > 0
+
+                            ? <>{expensesToDisplay.map(expense => {
                                 return <>
                                 <TransactionCard
                                 id={expense._id}
@@ -104,7 +112,11 @@ function ExpensesMain() {
                             />
                                 </>
                             })}
-                            {filterExpensesByMonth.length === 0 && <p>Mes sin datos.</p>}
+                            {filterExpensesByMonth.length === 0 && <p>Mes sin datos.</p>} </>
+                            : <p>Sin datos.</p>
+                        
+                        }
+                            
                         </section>
                         <PaginationBtns
                         arrowsFunction={changeExpensesPage}

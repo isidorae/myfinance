@@ -1,22 +1,27 @@
 import '../general.css'
 import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
 import TransactionContext from '../../context/TransactionContext';
+import AuthContext from '../../context/AuthContext';
 
 function AddTransaction({placeholder, TransType, categories, setReloadData}) {
 
     const { sendTransactionReq, getTransactionData } = useContext(TransactionContext)
+    const { userData } = useContext(AuthContext)
 
     const [category, setCategory] = useState("")
     const [title, setTitle] = useState("")
     const [amount, setAmount] = useState("")
     const [comment, setComment] = useState("")
 
+    const navigate = useNavigate()
+
     const [startDate, setStartDate] = useState(new Date());
 
-    let userId = "id1"
+    let userId = userData.id
 
     const CATEGORIES_SORTED = categories.sort()
 
@@ -43,11 +48,10 @@ function AddTransaction({placeholder, TransType, categories, setReloadData}) {
 
         console.log(data)
 
-        sendTransactionReq(data, TransType)
+        sendTransactionReq(data, TransType, userId)
         .then(() => {
             // setReloadData(true)
             resetValues()
-            window.location.reload();
         })
         .catch((error) => {
             console.error("error sending Transaction: ", error);

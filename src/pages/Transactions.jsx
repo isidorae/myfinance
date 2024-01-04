@@ -1,17 +1,34 @@
 import { useContext, useEffect } from "react"
+import { useNavigate } from 'react-router-dom'
 import HistoryComp from "../components/history/HistoryComp"
 import TransactionContext from "../context/TransactionContext"
+import AuthContext from "../context/AuthContext"
 
 function Transactions() {
 
+    const navigate = useNavigate()
+
     const {getTransactionHistory} = useContext(TransactionContext)
+    const {userData, isAuth} = useContext(AuthContext)
+    console.log(userData)
+    const userId = userData.id
 
     useEffect(() => {
-        userTransactionsData()
-      }, [])
+        if (isAuth) {
+            navigate('/history')
+            userTransactionsData()
+          } else {
+            navigate('/login')
+          }
+
+    }, [])
+
+    // useEffect(() => {
+    //     userTransactionsData()
+    //   }, [])
   
       function userTransactionsData() {
-          getTransactionHistory("id1")
+          getTransactionHistory(userId)
       }
 
     return (

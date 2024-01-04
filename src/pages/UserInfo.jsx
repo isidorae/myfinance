@@ -108,28 +108,6 @@ function UserInfo() {
                     </Row>
                     <Row>
                     </Row>
-                    {/* <input type="checkbox" name="food" checked/>
-                    <label for="food">Alimentos</label>
-                    <input type="checkbox" name="health" checked/>
-                    <label for="health">Salud e Higiene</label>
-                    <input type="checkbox" name="transport" checked/>
-                    <label for="transport">Transport</label>
-                    <input type="checkbox" name="home" checked/>
-                    <label for="home">Hogar</label>
-                    <input type="checkbox" name="accounts" checked/>
-                    <label for="accounts">Cuentas</label>
-                    <input type="checkbox" name="clothe" checked/>
-                    <label for="clothe">Vestuario</label>
-                    <input type="checkbox" name="entertainment" checked/>
-                    <label for="entertainment">Diversión/Placer</label>
-                    <input type="checkbox" name="education" checked/>
-                    <label for="education">Educación</label>
-                    <input type="checkbox" name="tecno" checked/>
-                    <label for="tecno">Tecnologías</label>
-                    <input type="checkbox" name="beauty" checked/>
-                    <label for="beauty">Estética/Belleza</label>
-                    <input type="checkbox" name="other" checked/>
-                    <label for="other">Otros</label> */}
                 </Container>
             </section>
         </div>

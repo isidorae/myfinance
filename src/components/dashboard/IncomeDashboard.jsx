@@ -19,6 +19,7 @@ function IncomeDashboard({incomeData}) {
           value={income.amount}
         />
         })}
+        {incomeData.length === 0 && <p>Mes sin ingresos.</p>}
       </section>
     </>
   );

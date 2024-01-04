@@ -1,4 +1,5 @@
 import { createContext, useState} from "react";
+import { useNavigate } from 'react-router-dom'
 import { addTransactionReq,
     getUserTransactionData,
     getTransactionsHistory,
@@ -14,14 +15,23 @@ const [incomeData, setIncomeData] = useState([])
 const [expensesData, setExpensesData] = useState([])
 const [transactionHistory, setTransactionHistory] = useState([])
 // const [selectedMonthIncomeData, setSelectedMonthIncomeData] = useState([])
-// const [selectedMonthExpensesData, setSelectedMonthExpensesData] = useState([])
+// // const [selectedMonthExpensesData, setSelectedMonthExpensesData] = useState([])
+
+const navigate = useNavigate()
 
 //add expense || income
-const sendTransactionReq = async (body, type) => {
+const sendTransactionReq = async (body, type, userId) => {
     try {
         const res = await addTransactionReq(body, type)
         const data = await res.data.detail
         console.log(data)
+        if (type == "income") {
+            getUserTransactionData("income", userId)
+            return navigate('/dashboard/incomes')
+        } else {
+            getUserTransactionData("expense", userId)
+            return navigate('/dashboard/expenses')
+        }
     } catch (error) {
         console.log(error)
         console.log(error.response.data.message)
@@ -34,11 +44,12 @@ const getTransactionData = async (transaction, id) => {
     try {
         const res = await getUserTransactionData(transaction, id)
         const data = await res.data.detail
-        console.log(data)
         
         if (transaction == "income") {
+            console.log(data)
             return setIncomeData(data)
         } else {
+            console.log(data)
             return setExpensesData(data)
         }
       
@@ -80,7 +91,7 @@ const data = {
     deleteTransReq,
     setIncomeData, incomeData,
     setExpensesData,expensesData,
-    transactionHistory,
+    transactionHistory
 }
 
 return (

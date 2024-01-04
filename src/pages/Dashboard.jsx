@@ -2,19 +2,24 @@ import { useContext, useEffect } from "react"
 import MainStruct from "../components/dashboard/MainStruct"
 import DateComponent from "../components/general/DateComponent"
 import TransactionContext from "../context/TransactionContext"
+import AuthContext from "../context/AuthContext"
 
 function Dashboard() {
 
     const { getTransactionData, getTransactionHistory } = useContext(TransactionContext)
+    const { userData } = useContext(AuthContext)
+
+    console.log(userData.id)
+    const userId = userData.id
 
     useEffect(() => {
       userTransactionsData()
     }, [])
 
     function userTransactionsData() {
-        getTransactionData("expense", "id1")
-        getTransactionData("income", "id1")
-        getTransactionHistory("id1")
+        getTransactionData("expense", userId)
+        getTransactionData("income", userId)
+        getTransactionHistory(userId)
     }
 
 

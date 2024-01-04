@@ -50,7 +50,7 @@ function MainStruct() {
         return splitdate == `${selectedMonth}/${selectedYear}`
     })
     console.log(incomeDataFilterByMonth)
-    let incomeSum = 0;
+    let incomeSum = 0; //acumulator
 
     const sumIncomes = incomeDataFilterByMonth.forEach(income => {
         let amountToInt= parseInt(income.amount)
@@ -66,7 +66,7 @@ function MainStruct() {
         return splitdate == `${selectedMonth}/${selectedYear}`
     })
     console.log(expenseDataFilterByMonth)
-    let expensesSum = 0;
+    let expensesSum = 0; //acumulator
 
 
     const sumExpenses = expenseDataFilterByMonth.forEach(expense => {

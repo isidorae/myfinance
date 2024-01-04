@@ -1,6 +1,5 @@
 import './App.css'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { useEffect, useContext } from 'react'
 
 import NavbarComp from './components/NavbarComp'
 import Footer from './components/Footer'
@@ -15,11 +14,15 @@ import Transactions from './pages/Transactions'
 
 import { DateProvider } from './context/DateContext'
 import { TransactionProvider } from './context/TransactionContext'
+import { AuthProvider } from './context/AuthContext'
+
 
 function App() {
 
+
   return (
     <>
+    <AuthProvider>
       <TransactionProvider>
       <NavbarComp/>
       <DateProvider>
@@ -37,6 +40,7 @@ function App() {
       </DateProvider>
       <Footer/>
       </TransactionProvider>
+      </AuthProvider>
     </>
   )
 }

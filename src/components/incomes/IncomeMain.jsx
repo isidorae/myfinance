@@ -12,18 +12,20 @@ import TransactionContext from '../../context/TransactionContext';
 import DateContext from '../../context/DateContext';
 
 import { categories } from '../general/income_categories.json'
+import AuthContext from '../../context/AuthContext';
 
 function IncomeMain() {
 
-    const {getTransactionData, incomeData} = useContext(TransactionContext)
+    const {getTransactionData, incomeData, selectedMonthIncome, setSelectedMonthIncomeData} = useContext(TransactionContext)
     const {selectedMonth, selectedYear} = useContext(DateContext)
+    const { userData } = useContext(AuthContext)
 
     useEffect(() => {
         getData()
     }, [])
 
     function getData() {
-        getTransactionData("income", "id1")
+        getTransactionData("income", userData.id)
     }
 
     //****************************** GET DATA BY MONTH ************************* /
@@ -42,7 +44,8 @@ function IncomeMain() {
            })
         console.log(IncomeByMonth_SORTED)
 
-        setSelectedMonthIncomeData(IncomeByMonth_SORTED)
+        // console.log(selectedMonthIncomeData)
+        // if (incomeData > 0) return setSelectedMonthIncomeData(IncomeByMonth_SORTED);
 
      //****************************** PAGINATION ****************************** /
 
@@ -86,19 +89,24 @@ function IncomeMain() {
                     <div className="box-container">
                         <h2>Historial</h2>
                         <section className="d-flex flex-column align-items-start">
-                            {incomesToDisplay.map(data => {
-                                return <>
-                                 <TransactionCard
-                                id={data._id}
-                                title={data.title}
-                                amount={data.amount}
-                                comment={data.comment}
-                                date={data.date}
-                                transaction_type={data.transaction_type}
+                        {incomeData.length > 0 
+                        ? <>
+                        {incomesToDisplay.map(data => {
+                            return <>
+                             <TransactionCard
+                            id={data._id}
+                            title={data.title}
+                            amount={data.amount}
+                            comment={data.comment}
+                            date={data.date}
+                            transaction_type={data.transaction_type}
                             />
-                                </>
-                            })}
-                            {filterIncomesByMonth.length === 0 && <p>Mes sin datos.</p>}
+                            </>
+                        })}
+                        {filterIncomesByMonth.length === 0 && <p>Mes sin datos.</p>}
+                        </>
+                        : <p>Sin datos.</p>}
+                         
                         </section>
                         <PaginationBtns
                         arrowsFunction={changeIncomesPage}
