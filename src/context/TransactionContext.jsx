@@ -1,4 +1,4 @@
-import { createContext, useState} from "react";
+import { createContext, useState, useEffect} from "react";
 import { addTransactionReq,
     getUserTransactionData,
     getTransactionsHistory,
@@ -13,6 +13,22 @@ const TransactionProvider = ({ children }) => {
 const [incomeData, setIncomeData] = useState([])
 const [expensesData, setExpensesData] = useState([])
 const [transactionHistory, setTransactionHistory] = useState([])
+const [inputsErr,  setInputsErr] = useState([])
+
+useEffect(() => {
+    resetErrMsg()
+}, [inputsErr])
+
+const resetErrMsg = () => {
+    let timer;
+    if (inputsErr.length > 0) {
+        timer = setTimeout(() => {
+            setInputsErr([])
+        }, 5000)
+    }
+
+    return () => clearTimeout(timer)
+}
 
 //add expense || income
 const sendTransactionReq = async (body, type, token) => {
@@ -23,6 +39,7 @@ const sendTransactionReq = async (body, type, token) => {
     } catch (error) {
         console.log(error)
         console.log(error.response.data.message)
+        setInputsErr([error.response.data.message])
     }
 }
 
@@ -79,7 +96,8 @@ const data = {
     deleteTransReq,
     setIncomeData, incomeData,
     setExpensesData,expensesData,
-    transactionHistory
+    transactionHistory,
+    inputsErr
 }
 
 return (

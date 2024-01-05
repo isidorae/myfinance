@@ -9,7 +9,7 @@ function Card({icon: IconComponent, title, value, key }) {
             <p className="me-2">{title}</p>
         </div>
         <div>
-            <p className="justify-self-end">${value}</p>
+            <p className="justify-self-end">${new Intl.NumberFormat().format(value)}</p>
         </div>
     </div>
     )

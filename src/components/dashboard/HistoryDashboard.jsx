@@ -12,7 +12,7 @@ function HistoryDashboard({historyData}) {
              <TransactionCard
             key={data._id}
             title={data.title}
-            amount={data.amount}
+            amount={new Intl.NumberFormat().format(data.amount)}
             comment={data.comment}
             date={data.date}
             transaction_type={data.transaction_type}

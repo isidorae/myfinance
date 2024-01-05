@@ -22,7 +22,7 @@ function ExpensesIncomeSummary({incomeSum, expensesSum}) {
                     <p className="me-2">Gastos</p>
                 </div>
                 <div>
-                    <p className="font-large justify-self-end">${expensesSum}</p>
+                    <p className="font-large justify-self-end">${new Intl.NumberFormat().format(expensesSum)}</p>
                 </div>
             </section>
             <section className="dash-exp-card d-flex align-items-center justify-content-between">
@@ -30,7 +30,7 @@ function ExpensesIncomeSummary({incomeSum, expensesSum}) {
                     <p className="me-2">Ingresos</p>
                 </div>
                 <div>
-                    <p className="font-large justify-self-end">${incomeSum}</p>
+                    <p className="font-large justify-self-end">${new Intl.NumberFormat().format(incomeSum)}</p>
                 </div>
             </section>
             <section className="dash-exp-card d-flex align-items-center justify-content-between">
@@ -39,7 +39,7 @@ function ExpensesIncomeSummary({incomeSum, expensesSum}) {
                 </div>
                 <div className={`${difference > 0 ? 'positive-diff' : 'negative-diff'} ${difference === 0 && 'empty-style'}`}>
                     <p className="font-large justify-self-end">
-                        $ {differenceSign} {difference}
+                        $ {differenceSign} {new Intl.NumberFormat().format(difference)}
                         </p>
                 </div>
             </section>

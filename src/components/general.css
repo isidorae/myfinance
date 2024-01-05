@@ -100,3 +100,9 @@ input {
     border-radius: 6px;
     max-width: 250px;
 }
+
+.err-msg {
+    max-width: 200px;
+    border-radius: 8px;
+    color: rgb(188, 37, 37);
+}

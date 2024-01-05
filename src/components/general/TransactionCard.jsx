@@ -35,7 +35,7 @@ function TransactionCard({id, title, amount, comment, date, transaction_type}) {
                 <p className="me-2">
                 <b className="dmserif-font">{title}</b>
                 </p>
-                <p className="me-2">{transaction_value} ${amount}</p>
+                <p className="me-2">{transaction_value} ${new Intl.NumberFormat().format(amount)}</p>
                 <p className="me-2"><small>{comment}</small></p>
                 <p className="me-2">{date}</p>
             </section>
