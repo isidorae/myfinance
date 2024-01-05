@@ -1,18 +1,34 @@
 import axios from './axios'
 
 //GENERAL REQUESTS
-export const addTransactionReq = (body, type) => {
-    return axios.post(`/transactions/${type}`, body)
+export const addTransactionReq = (body, type, token) => {
+    return axios.post(`/transactions/${type}`, body, {
+        headers: {
+            'authorization': `Bearer ${token}`
+        }
+    })
 }
-export const getTransactionsHistory = (id) => {
-    return axios.get(`/transactions/${id}`)
+export const getTransactionsHistory = (id, token) => {
+    return axios.get(`/transactions/${id}`, {
+        headers: {
+            'authorization': `Bearer ${token}`
+        }
+    })
 }
 
-export const deleteTransaction = (id) => {
-    return axios.delete(`/transactions/${id}`)
+export const deleteTransaction = (id, token) => {
+    return axios.delete(`/transactions/${id}`, {
+        headers: {
+            'authorization': `Bearer ${token}`
+        }
+    })
 }
 
 //SPECIFIC REQUESTS
-export const getUserTransactionData = (transaction, id) => {
-    return axios.get(`/transactions/${transaction}/${id}`)
+export const getUserTransactionData = (transaction, id, token) => {
+    return axios.get(`/transactions/${transaction}/${id}`, {
+        headers: {
+            'authorization': `Bearer ${token}`
+        }
+    })
 }

@@ -9,7 +9,7 @@ function Transactions() {
     const navigate = useNavigate()
 
     const {getTransactionHistory} = useContext(TransactionContext)
-    const {userData, isAuth} = useContext(AuthContext)
+    const {userData, isAuth, token} = useContext(AuthContext)
     console.log(userData)
     const userId = userData.id
 
@@ -28,7 +28,7 @@ function Transactions() {
     //   }, [])
   
       function userTransactionsData() {
-          getTransactionHistory(userId)
+          getTransactionHistory(userId, token)
       }
 
     return (

@@ -7,19 +7,20 @@ import AuthContext from "../context/AuthContext"
 function Dashboard() {
 
     const { getTransactionData, getTransactionHistory } = useContext(TransactionContext)
-    const { userData } = useContext(AuthContext)
+    const { userData, token, isAuth } = useContext(AuthContext)
+    
+    const userId = userData.id
 
     console.log(userData.id)
-    const userId = userData.id
 
     useEffect(() => {
       userTransactionsData()
     }, [])
 
     function userTransactionsData() {
-        getTransactionData("expense", userId)
-        getTransactionData("income", userId)
-        getTransactionHistory(userId)
+        getTransactionData("expense", userId, token)
+        getTransactionData("income", userId, token)
+        getTransactionHistory(userId, token)
     }
 
 

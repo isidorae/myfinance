@@ -1,5 +1,4 @@
 import { createContext, useState} from "react";
-import { useNavigate } from 'react-router-dom'
 import { addTransactionReq,
     getUserTransactionData,
     getTransactionsHistory,
@@ -14,24 +13,13 @@ const TransactionProvider = ({ children }) => {
 const [incomeData, setIncomeData] = useState([])
 const [expensesData, setExpensesData] = useState([])
 const [transactionHistory, setTransactionHistory] = useState([])
-// const [selectedMonthIncomeData, setSelectedMonthIncomeData] = useState([])
-// // const [selectedMonthExpensesData, setSelectedMonthExpensesData] = useState([])
-
-const navigate = useNavigate()
 
 //add expense || income
-const sendTransactionReq = async (body, type, userId) => {
+const sendTransactionReq = async (body, type, token) => {
     try {
-        const res = await addTransactionReq(body, type)
+        const res = await addTransactionReq(body, type, token)
         const data = await res.data.detail
         console.log(data)
-        if (type == "income") {
-            getUserTransactionData("income", userId)
-            return navigate('/dashboard/incomes')
-        } else {
-            getUserTransactionData("expense", userId)
-            return navigate('/dashboard/expenses')
-        }
     } catch (error) {
         console.log(error)
         console.log(error.response.data.message)
@@ -40,9 +28,9 @@ const sendTransactionReq = async (body, type, userId) => {
 
 
 //get incomes & expenses
-const getTransactionData = async (transaction, id) => {
+const getTransactionData = async (transaction, id, token) => {
     try {
-        const res = await getUserTransactionData(transaction, id)
+        const res = await getUserTransactionData(transaction, id, token)
         const data = await res.data.detail
         
         if (transaction == "income") {
@@ -60,9 +48,9 @@ const getTransactionData = async (transaction, id) => {
 }
 
 //get all transactions
-const getTransactionHistory = async (id) => {
+const getTransactionHistory = async (id, token) => {
     try {
-        const res = await getTransactionsHistory(id)
+        const res = await getTransactionsHistory(id, token)
         const data = await res.data.detail
         console.log(data)
         return setTransactionHistory(data)
@@ -73,14 +61,14 @@ const getTransactionHistory = async (id) => {
 }
 
 //delete expense || income
-const deleteTransReq = async (id) => {
+const deleteTransReq = async (id, token) => {
     try {
-        const res = await deleteTransaction(id)
+        const res = await deleteTransaction(id, token)
         const deleted = await res.data.detail
         console.log(deleted)
     } catch (error) {
         console.log(error)
-        console.log(error.response.data.message)
+        console.log(error.response)
     }
 }
 

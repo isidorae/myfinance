@@ -16,7 +16,7 @@ import AuthContext from '../../context/AuthContext';
 function ExpensesMain() {
 
     const { getTransactionData, expensesData } = useContext(TransactionContext)
-    const { userData } = useContext(AuthContext)
+    const { userData, token } = useContext(AuthContext)
     const {selectedMonth, selectedYear} = useContext(DateContext)
     const [reloadData, setReloadData ] = useState(false)
 
@@ -30,7 +30,7 @@ function ExpensesMain() {
     }, [reloadData])
 
     function getData(){
-        getTransactionData("expense", userData.id)
+        getTransactionData("expense", userData.id, token)
     }
 
     //********* RELOAD DATA WHEN TRANSACTION ADDED */
@@ -80,7 +80,7 @@ function ExpensesMain() {
 
     return (
         <>
-        <div className="dashboard-items-container p-3">
+        <div className="dashboard-items-container p-3 mt-2">
             <Container className="">
                 <Row>
                     <Col>

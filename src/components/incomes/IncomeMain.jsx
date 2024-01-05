@@ -16,7 +16,7 @@ import AuthContext from '../../context/AuthContext';
 
 function IncomeMain() {
 
-    const {getTransactionData, incomeData, selectedMonthIncome, setSelectedMonthIncomeData} = useContext(TransactionContext)
+    const {getTransactionData, incomeData } = useContext(TransactionContext)
     const {selectedMonth, selectedYear} = useContext(DateContext)
     const { userData } = useContext(AuthContext)
 

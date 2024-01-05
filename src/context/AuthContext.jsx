@@ -8,6 +8,7 @@ const AuthProvider = ({children}) => {
 
     const [isAuth, setIsAuth ] = useState(false)
     const [userData, setUserData ] = useState("") //username and id
+    const [token, setToken] = useState("")
 
     const navigate = useNavigate()
 
@@ -18,6 +19,7 @@ const AuthProvider = ({children}) => {
             console.log("*** REGISTER ****")
             console.log(userData)
             console.log(res.data.detail.id)
+            setToken(res.data.detail.token)
             setUserData({id: res.data.detail.id, username: res.data.detail.username})
             navigate('/dashboard')
             setIsAuth(true)
@@ -34,6 +36,7 @@ const AuthProvider = ({children}) => {
             console.log("*** LOGIN ****")
             console.log(userData)
             console.log(res.data.detail.id)
+            setToken(res.data.detail.token)
             setUserData({id: res.data.detail.id, username: res.data.detail.username})
             navigate('/dashboard')
             setIsAuth(true)
@@ -50,6 +53,7 @@ const AuthProvider = ({children}) => {
             if (await res) {
                 setIsAuth(false)
                 setUserData("")
+                setToken("")
                 return navigate('/')
             }
         } catch (error) {
@@ -65,7 +69,8 @@ const AuthProvider = ({children}) => {
         loginToApp,
         logoutFromApp,
         isAuth,
-        userData
+        userData,
+        token
     }
     return (
         <AuthContext.Provider value={data}>

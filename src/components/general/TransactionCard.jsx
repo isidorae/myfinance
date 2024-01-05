@@ -1,10 +1,12 @@
+import AuthContext from '../../context/AuthContext'
 import TransactionContext from '../../context/TransactionContext'
 import '../general.css'
 import { useContext } from 'react'
 
 function TransactionCard({id, title, amount, comment, date, transaction_type}) {
 
-    const { deleteTransReq } = useContext(TransactionContext)
+    const { deleteTransReq, getTransactionData } = useContext(TransactionContext)
+    const { userData, token} = useContext(AuthContext)
 
     let transaction_value = ""
 
@@ -14,10 +16,16 @@ function TransactionCard({id, title, amount, comment, date, transaction_type}) {
         transaction_value = "-"
     }
 
-    function deleteTransaction(id) {
+    function deleteTransaction(id, type, token) {
         console.log(id)
-        deleteTransReq(id)
-        .then(() => window.location.reload());
+        deleteTransReq(id, token)
+        .then(() => {
+            if(type === "income") {
+                getTransactionData("income", userData.id, token)
+            } else {
+                getTransactionData("expense", userData.id, token)
+            }
+        });
     }
 
     return (
@@ -32,7 +40,7 @@ function TransactionCard({id, title, amount, comment, date, transaction_type}) {
                 <p className="me-2">{date}</p>
             </section>
             <section>
-             <button onClick={() => deleteTransaction(id)} className="text-center del-btn">X</button>
+             <button onClick={() => deleteTransaction(id, transaction_type, token)} className="text-center del-btn">X</button>
             </section>
          </div>
         </>

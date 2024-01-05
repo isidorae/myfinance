@@ -29,6 +29,7 @@ function MainStruct() {
        console.log(splitdate)
        return splitdate == `${selectedMonth}/${selectedYear}`
     })
+    console.log("transaction story", transactionHistory)
     console.log("testfilterdata", historyFilterDataByMonth) //testeando nuevo array creado segun mes y año seleccionado ✅
 
     //**** show last 5 transactions */
@@ -89,8 +90,13 @@ function MainStruct() {
                        expensesSum={expensesSum}/>
                     </Col>
                     <Col>
-                        <HistoryDashboard
-                        historyData={lastFive_SORTED}/>
+                    {historyFilterDataByMonth.length < 5 
+                        ? <HistoryDashboard
+                        historyData={historyFilterDataByMonth}/>
+                        : <HistoryDashboard
+                        historyData={lastFive_SORTED}/>}
+                        {/* <HistoryDashboard
+                        historyData={lastFive_SORTED}/> */}
                     </Col>
                 </Row>
                 <Row className="p-2">
