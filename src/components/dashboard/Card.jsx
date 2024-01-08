@@ -1,6 +1,6 @@
 import "./dashboard.css"
 
-function Card({icon: IconComponent, title, value, key }) {
+function Card({icon: IconComponent, title, value, key, perc }) {
 
     return(
         <div key={key} className="dash-exp-card d-flex align-items-center justify-content-between">
@@ -8,8 +8,9 @@ function Card({icon: IconComponent, title, value, key }) {
             < IconComponent  className="me-2"/>
             <p className="me-2">{title}</p>
         </div>
-        <div>
+        <div className="d-flex">
             <p className="justify-self-end">${new Intl.NumberFormat().format(value)}</p>
+            {perc && <p className="ms-3">{perc}%</p>}
         </div>
     </div>
     )

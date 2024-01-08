@@ -1,4 +1,4 @@
-import { createContext, useState} from "react";
+import { createContext, useState, useEffect} from "react";
 import { login, register, logout } from "../hooks/auth";
 import { useNavigate } from 'react-router-dom'
 
@@ -9,8 +9,23 @@ const AuthProvider = ({children}) => {
     const [isAuth, setIsAuth ] = useState(false)
     const [userData, setUserData ] = useState("") //username and id
     const [token, setToken] = useState("")
+    const [err, setErr] = useState([])
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        resetErrMsg()
+    }, [err])
+
+    const resetErrMsg = () => {
+        let timer;
+        if (err.length > 0) {
+            timer = setTimeout(() => {
+                setErr([])
+            }, 5000)
+        }
+        return () => clearTimeout(timer)
+    }
 
     const createAccount = async (data) => {
         try {
@@ -25,7 +40,8 @@ const AuthProvider = ({children}) => {
             setIsAuth(true)
         } catch (error) {
                 console.log(error)
-                console.log(error.response.data.message)
+                const registerErr = error.response.data.message;
+                setErr([...err, registerErr])
         }
     }
 
@@ -42,7 +58,8 @@ const AuthProvider = ({children}) => {
             setIsAuth(true)
         } catch (error) {
                 console.log(error)
-                console.log(error.response)
+                const loginErr = error.response.data.message;
+                setErr([...err, loginErr])
         }
 
     }
@@ -70,7 +87,8 @@ const AuthProvider = ({children}) => {
         logoutFromApp,
         isAuth,
         userData,
-        token
+        token, 
+        err, setErr
     }
     return (
         <AuthContext.Provider value={data}>
