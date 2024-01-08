@@ -7,7 +7,7 @@ import AuthContext from "../context/AuthContext"
 function Dashboard() {
 
     const { getTransactionData, getTransactionHistory } = useContext(TransactionContext)
-    const { userData, token, isAuth } = useContext(AuthContext)
+    const { userData, token } = useContext(AuthContext)
     
     const userId = userData.id
 

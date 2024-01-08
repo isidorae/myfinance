@@ -43,6 +43,7 @@ const AuthProvider = ({children}) => {
             navigate('/dashboard')
             setIsAuth(true)
         } catch (error) {
+                setLoading(false)
                 console.log(error)
                 const registerErr = error.response.data.message;
                 setErr([...err, registerErr])
@@ -63,6 +64,7 @@ const AuthProvider = ({children}) => {
             navigate('/dashboard')
             setIsAuth(true)
         } catch (error) {
+                setLoading(false)
                 console.log(error)
                 const loginErr = error.response.data.message;
                 setErr([...err, loginErr])
