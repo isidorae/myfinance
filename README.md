@@ -12,6 +12,8 @@ El frontend de la aplicación está desarrollado con React y Bootstrap, mientras
     Username ->  maquina
     pass ->  abcdef
 
+    y ir a la siguiente fecha: Enero/2024
+
 
 # Funcionalidades Principales
 
