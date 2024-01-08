@@ -42,7 +42,7 @@ function ExpenseChart({chartData}) {
         <>
         <div>
             <h2><small>Gráfico Gastos</small></h2>
-            <div className="chart-js-container d-flex flex-column align-items-center">
+            <div className="mb-5 chart-js-container d-flex flex-column align-items-center">
                 {filteredArr.length === 0
                 ? <p>Sin datos.</p>
                 : <Doughnut
