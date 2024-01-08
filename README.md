@@ -6,6 +6,12 @@ Una aplicación diseñada para organizar los gastos personales realizados a lo l
 
 El frontend de la aplicación está desarrollado con React y Bootstrap, mientras que el backend utiliza Node, Express y MongoDB para almacenar los datos de cada usuario. La aplicación está alojada en un servidor gratuito de render.com (https://financeapp-26ny.onrender.com/my-finance-app/v1/), lo que puede resultar en tiempos de inicialización más largos debido a la desactivación después de 15 minutos de inactividad. La reactivación puede demorar entre 5 y 10 minutos después de realizar la primera petición.
 
+# Testeo Rápido
+
+    Para testear funcionalidad de app sin registrarse y ver una cuenta demo de usuario, iniciar sesión con las siguientes credenciales;
+    Username ->  maquina
+    pass ->  abcdef
+
 
 # Funcionalidades Principales
 
