@@ -2,10 +2,12 @@ import AuthContext from '../../context/AuthContext'
 import '../general.css'
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Spinner from 'react-bootstrap/Spinner';
+
 
 function LoginForm() {
 
-    const { loginToApp, err } = useContext(AuthContext)
+    const { loginToApp, err, loading } = useContext(AuthContext)
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -29,7 +31,11 @@ function LoginForm() {
                 <form onSubmit={loginData} className="d-flex flex-column">
                     <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="nombre de usuario" className="mb-1"></input>
                     <input value={password} onChange={(e)=> setPassword(e.target.value)} type="password" placeholder="contraseña" className="mb-1"></input>
-                    <button className="log-btn">Ingresar</button>
+                    {loading
+                    ? <button className="log-btn"><Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner></button>
+                    : <button className="log-btn">Ingresar</button>}
                 </form>
             </div>
             <p className="mt-2">

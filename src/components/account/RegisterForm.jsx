@@ -2,10 +2,11 @@ import "../general.css";
 import { Link } from "react-router-dom"
 import { useContext, useState } from 'react'
 import AuthContext from "../../context/AuthContext";
+import Spinner from 'react-bootstrap/Spinner';
 
 function RegisterForm() {
 
-  const { createAccount, err, setErr } = useContext(AuthContext)
+  const { createAccount, err, setErr, loading} = useContext(AuthContext)
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -56,7 +57,12 @@ function RegisterForm() {
               placeholder="confirmar contraseña"
               className="mb-1"
             ></input>
-            <button className="log-btn">Registrar</button>
+            {loading 
+            ? <button className="log-btn"><Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner></button>
+            : <button className="log-btn">Registrar</button>}
+            
           </form>
         </div>
         <p className="mt-2">

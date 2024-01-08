@@ -10,7 +10,7 @@ function Card({icon: IconComponent, title, value, key, perc }) {
         </div>
         <div className="d-flex">
             <p className="justify-self-end">${new Intl.NumberFormat().format(value)}</p>
-            {perc && <p className="ms-3">{perc}%</p>}
+            {perc > 0  ? <p className="ms-3">{perc}%</p> : null}
         </div>
     </div>
     )

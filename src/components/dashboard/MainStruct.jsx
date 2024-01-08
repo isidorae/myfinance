@@ -260,8 +260,6 @@ function MainStruct() {
                         historyData={historyFilterDataByMonth}/>
                         : <HistoryDashboard
                         historyData={lastFive_SORTED}/>}
-                        {/* <HistoryDashboard
-                        historyData={lastFive_SORTED}/> */}
                     </Col>
                 </Row>
                 <Row className="p-2">

@@ -27,7 +27,7 @@ function Dashboard() {
     return (
         <>
         <div className="d-flex flex-column justify-content-center frame-view-parent">
-        <h1 className="mt-5">Hola @Usuario</h1>
+        <h1 className="mt-5">Hola @{userData.username}</h1>
         <DateComponent />
         <MainStruct/>
         </div>

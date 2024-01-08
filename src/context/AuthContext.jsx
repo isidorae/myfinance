@@ -9,7 +9,9 @@ const AuthProvider = ({children}) => {
     const [isAuth, setIsAuth ] = useState(false)
     const [userData, setUserData ] = useState("") //username and id
     const [token, setToken] = useState("")
+
     const [err, setErr] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
 
@@ -29,7 +31,9 @@ const AuthProvider = ({children}) => {
 
     const createAccount = async (data) => {
         try {
+            setLoading(true)
             const res = await register(data)
+            setLoading(false)
             const userData = res.data.detail;
             console.log("*** REGISTER ****")
             console.log(userData)
@@ -47,7 +51,9 @@ const AuthProvider = ({children}) => {
 
     const loginToApp = async (data) => {
         try {
+            setLoading(true)
             const res = await login(data)
+            setLoading(false)
             const userData = res.data.detail;
             console.log("*** LOGIN ****")
             console.log(userData)
@@ -79,8 +85,6 @@ const AuthProvider = ({children}) => {
         }
     }
 
-
-
     const data = {
         createAccount,
         loginToApp,
@@ -88,7 +92,8 @@ const AuthProvider = ({children}) => {
         isAuth,
         userData,
         token, 
-        err, setErr
+        err, setErr,
+        loading
     }
     return (
         <AuthContext.Provider value={data}>

@@ -1,4 +1,5 @@
 import '../components/general.css'
+import { Link } from 'react-router-dom'
 
 function Home () {
 
@@ -11,7 +12,7 @@ function Home () {
             <p className="main-p">
                 Con MyFinanceApp te facilitamos esta tarea. Lleva un historial de todos tus gastos e ingresos, clasificados de forma clara, precisa y ordenada. 
             </p>
-            <a href="/login" className="text-decoration-none">Comienza hoy!</a>
+            <Link to="/login" className="text-decoration-none">Comienza hoy!</Link>
             </section>
         </div>
         </>

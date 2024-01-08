@@ -43,9 +43,11 @@ function ExpenseChart({chartData}) {
         <div>
             <h2><small>Gráfico Gastos</small></h2>
             <div className="chart-js-container d-flex flex-column align-items-center">
-                <Doughnut
-                data={dataDisplay}
-                />
+                {filteredArr.length === 0
+                ? <p>Sin datos.</p>
+                : <Doughnut
+                data={dataDisplay} />}
+        
             </div>
         </div>
         </>
